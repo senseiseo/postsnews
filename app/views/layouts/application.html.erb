@@ -22,6 +22,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
 
+
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -61,13 +62,25 @@
       </li>-->
     </ul>
     <div>
-  <button type="button" class="btn btn-success">Вход</button>
-  <button type="button" class="btn btn-primary">Регистрация</button>
+
+
+   <%= render 'include/auth/auth_header'%>
+  
   </div>
   </div>
 </nav>
+   <!-- <%= render 'include/main/notification'%> -->
     <%= yield %>
     <!-- Sidebar Widgets Column -->
+
+    <% unless flash.empty? %>
+   <script type="text/javascript">
+      <% flash.each do |f| %>
+    <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+   	 toastr['<%= type %>']('<%= f[1] %>');
+     <% end %>
+     </script>
+    <% end %>
       <div class="col-md-4">
 
         <!-- Search Widget -->
